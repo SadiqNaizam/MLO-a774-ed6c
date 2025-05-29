@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+const { fontFamily } = require("tailwindcss/defaultTheme");
 
 export default {
 	darkMode: ["class"],
@@ -52,6 +53,7 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+                /* Sidebar colors - preserved as PRD doesn't cover sidebars */
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
@@ -65,9 +67,14 @@ export default {
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
-				md: 'calc(var(--radius) - 2px)',
+				md: 'calc(var(--radius) - 2px)', // if --radius is 0.5rem (8px), this is 6px (0.375rem), matching Tailwind's 'md'
 				sm: 'calc(var(--radius) - 4px)'
 			},
+            /* PRD primaryFont is 'sans-serif', covered by Tailwind's default font stack. */
+            /* No specific named font to add here unless specified in PRD with @font-face */
+            fontFamily: {
+                sans: ['sans-serif', ...fontFamily.sans],
+            },
 			keyframes: {
 				'accordion-down': {
 					from: {
